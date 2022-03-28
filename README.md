@@ -42,6 +42,11 @@ Fixes and enhancements are highly welcome !
 After preparing the input files and setting up the configuration, the
 program can be executed by running `evaluation_master.py`.
 
+### Example
+The directory `Example` contains two example input csv files.
+In order to use them, copy the files into the `source` directory you
+created into the root directory of this repository 
+(see [How to use instructions](#how-to-use) above). 
 
 ### Required packages
 - matplotlib
