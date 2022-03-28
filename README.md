@@ -54,7 +54,7 @@ In order to use them, copy the files into the `source` directory you
 created into the root directory of this repository 
 (see [How to use instructions](#how-to-use) above). 
 
-### Required software an packages
+### Required software and packages
 This program has been implemented and tested on Python 3.8.  
 Moreover, the following additional packages are required:
 - Matplotlib 3.5.1
