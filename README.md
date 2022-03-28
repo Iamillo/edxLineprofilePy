@@ -54,11 +54,18 @@ In order to use them, copy the files into the `source` directory you
 created into the root directory of this repository 
 (see [How to use instructions](#how-to-use) above). 
 
-### Required packages
-- matplotlib
-- scipy
-- numpy
-- statsmodels
+### Required software an packages
+This program has been implemented and tested on Python 3.8.  
+Moreover, the following additional packages are required:
+- Matplotlib 3.5.1
+- SciPy 1.8.0
+- NumPy 0.20.1
+- statsmodels 0.13.2
+
+It is recommended to use an [integrated development environment (IDE)](https://en.wikipedia.org/wiki/Integrated_development_environment) 
+like the [PyCharm Community Edition](https://www.jetbrains.com/pycharm/). PyCharm comes with an Python 3.X installation and among many 
+other convenient features, includes a package manager which can be used to install the above mentioned required packages. For more details
+see the [documations](https://www.jetbrains.com/help/pycharm/quick-start-guide.html).
 
 ### Contribute
 All kind of contribution is highly welcome, no matter if bug fix, enhancement
