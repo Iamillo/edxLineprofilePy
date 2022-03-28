@@ -1,5 +1,5 @@
-[![Python 3.8](https://img.shields.io/badge/python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/)
-[![matplotlib 3.5.1](https://img.shields.io/badge/matplotlib-3.5.1-green.svg)](https://matplotlib.org/)
+[![Python 3.8](https://img.shields.io/badge/Python-3.8-blue.svg)](https://www.python.org/downloads/release/python-380/)
+[![Matplotlib 3.5.1](https://img.shields.io/badge/Matplotlib-3.5.1-green.svg)](https://matplotlib.org/)
 [![NumPy 1.20.1](https://img.shields.io/badge/NumPy-1.20.1-red.svg)](https://numpy.org/devdocs/index.html)
 [![SciPy 1.8.0](https://img.shields.io/badge/SciPy-1.8.0-yellow.svg)](https://scipy.org/)
 [![statsmodels 0.13.2](https://img.shields.io/badge/statsmodels-0.13.2-purple.svg)](https://www.statsmodels.org/stable/index.html)
