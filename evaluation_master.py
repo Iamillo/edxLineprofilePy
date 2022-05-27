@@ -52,8 +52,8 @@ for time_position, filename in file_names.items():
                     # the cast to float is important,
                     # 1) csv might be interpreted as string,
                     # 2) skips lines between header and first values
-                    unit_converting_factor = (config.x_unit_convertion_factor if csv_column == 'x'
-                                              else config.con_unit_convertion_factor)
+                    unit_converting_factor = (config.x_unit_conversion_factor if csv_column == 'x'
+                                              else config.con_unit_conversion_factor)
                     position[time_position][csv_column].append(unit_converting_factor * float(line[csv_column]))
             except ValueError:
                 # skipping lines describing header and units, etc.
