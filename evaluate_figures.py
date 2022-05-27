@@ -19,6 +19,10 @@ def evaluate_print_figures(values: dict, eval_time: list, elements: list) -> Non
 
     for e in range(0, len(elements)):
         elem = elements[e]
+        # in case we only process one input csv file, the dimension of the
+        # axs object needs to be adjusted to hold for the upcoming commands
+        if axs.ndim == 1:
+            axs = axs.reshape(1, axs.shape[0])
         axs[0, e].set_title(elem[0].upper()+elem[1])
         axs[len(eval_time)-1, e].set_xlabel('x / nm', fontsize=20)
         axs[len(eval_time) - 1, e].set_xticks([0,30,60,90])
