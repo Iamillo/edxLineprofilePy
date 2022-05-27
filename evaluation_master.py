@@ -3,7 +3,10 @@ import os
 from copy import deepcopy
 
 import config
-from evaluate_figures import evaluate_print_figures
+from evaluate_figures import (
+    evaluate_print_figures,
+    print_elements_one_fig
+)
 from filter import savgol_filter
 
 from tools import (
@@ -44,13 +47,14 @@ for time_position, filename in file_names.items():
         for line in content:
             counter += 1
             try:
-                scaleX = 1.e9
                 # iterating through the columns of a
                 for csv_column in config.input_file_header:
                     # the cast to float is important,
                     # 1) csv might be interpreted as string,
                     # 2) skips lines between header and first values
-                    position[time_position][csv_column].append(scaleX * float(line[csv_column]))
+                    unit_converting_factor = (config.x_unit_convertion_factor if csv_column == 'x'
+                                              else config.con_unit_convertion_factor)
+                    position[time_position][csv_column].append(unit_converting_factor * float(line[csv_column]))
             except ValueError:
                 # skipping lines describing header and units, etc.
                 continue
@@ -61,14 +65,10 @@ c_deviation = get_deviation(position, center=45.0, peakWidth=15.0)
 
 peakPos = get_all_peak_positions(position)
 
-eval_time = position.keys()
-elements = ['Ni', 'Co', 'Ru']
-peaksOverTime = {'sec':[]}
-deviationOverTime = {'sec':[]}
-for time in eval_time:
-    peaksOverTime['sec'].append(int(time))
-    deviationOverTime['sec'].append(int(time))
-for elem in ['Ni', 'Co', 'Ru']:
+eval_time = list(position.keys())
+peaksOverTime = {'sec': [int(time) for time in eval_time]}
+deviationOverTime = {'sec': [int(time) for time in eval_time]}
+for elem in config.elements:
     peaksOverTime[elem] = []
     deviationOverTime[elem] = []
     for time in eval_time:
@@ -79,4 +79,5 @@ for elem in ['Ni', 'Co', 'Ru']:
         deviationOverTime[elem].append(c_deviation[elem][c_deviation['sec'].index(int(time[0:2]))])
 
 
-evaluate_print_figures(position, eval_time, elements)
+#evaluate_print_figures(position, eval_time, config.elements)
+print_elements_one_fig(position, eval_time, config.elements)

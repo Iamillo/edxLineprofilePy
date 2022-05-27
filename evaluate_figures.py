@@ -9,6 +9,13 @@ from plotting import plotAttime
 
 
 def evaluate_print_figures(values: dict, eval_time: list, elements: list) -> None:
+    """
+    Plotting subplots for each time (csv input file resp.) and elements respectively.
+    :param values:
+    :param eval_time:
+    :param elements:
+    :return:
+    """
     fig, axs = mapy.subplots(len(eval_time),
                              len(elements),
                              sharex='col',
@@ -36,6 +43,37 @@ def evaluate_print_figures(values: dict, eval_time: list, elements: list) -> Non
             if e == 0 and t == round(len(eval_time) / 2) - 1:
                 axs[t, e].set_ylabel('c / at.%', fontsize=20)
             axs[t, e].tick_params(labelsize=15)
+
+    fig.savefig(os.path.join(config.results_directory, '3E_col.png'), dpi=300)
+    mapy.show()
+
+
+def print_elements_one_fig(values: dict, eval_time: list, elements: list) -> None:
+    """
+    Currently works for single csv input files only. Plots all elements into one figure.
+    :param values:
+    :param eval_time:
+    :param elements:
+    :return:
+    """
+    fig, axs = mapy.subplots(sharex='col',
+                             sharey='col',
+                             gridspec_kw={'hspace':0, 'wspace':0.25})
+    fig.suptitle(f"time = {eval_time[0]} sec.")
+    axs.set_xlim(0, 90)
+    axs.set_xlabel('x / nm', fontsize=20)
+    axs.set_ylabel('concentration / at.%', fontsize=20)
+    for e in range(0, len(elements)):
+        elem = elements[e]
+        # in case we only process one input csv file, the dimension of the
+        # axs object needs to be adjusted to hold for the upcoming commands
+        for t in range(0, len(eval_time)):
+            time = list(eval_time)[t]
+
+            axs.plot(values[time]['x'], values[time][elem], ':', color='lightgray')
+            axs.plot(values[time]['x'], savgol_filter(values[time][elem]), color=colors[elem])
+
+            axs.tick_params(labelsize=15)
 
     fig.savefig(os.path.join(config.results_directory, '3E_col.png'), dpi=300)
     mapy.show()
